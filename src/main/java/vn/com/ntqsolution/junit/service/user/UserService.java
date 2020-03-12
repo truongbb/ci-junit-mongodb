@@ -7,4 +7,7 @@ import java.util.List;
 public interface UserService {
 
     List<UserEntity> findAll();
+
+    List<UserEntity> findByUsername(String username);
+
 }

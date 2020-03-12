@@ -9,6 +9,7 @@ import vn.com.ntqsolution.junit.entity.UserEntity;
 import vn.com.ntqsolution.junit.repository.user.UserRepositoryJpa;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -22,4 +23,11 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> findAll() {
         return userRepositoryJpa.findAll();
     }
+
+    @Override
+    public List<UserEntity> findByUsername(String username) {
+        List<UserEntity> users = findAll();
+        return users.stream().filter(user -> user.getUsername().trim().contains(username)).collect(Collectors.toList());
+    }
+
 }
